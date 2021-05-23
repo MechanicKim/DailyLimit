@@ -19,7 +19,7 @@ const Text = styled.Text`
 `;
 
 export default function MainFooter(props) {
-  const { date, getRecords } = props;
+  const {date, getRecords} = props;
 
   return (
     <Footer>

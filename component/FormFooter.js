@@ -19,20 +19,18 @@ const Text = styled.Text`
 `;
 
 export default function FormFooter(props) {
-  const { back, rid, remove, save  } = props;
+  const {back, rid, remove, save} = props;
 
   return (
     <Footer>
       <Button onPress={() => back()}>
         <Text>취소</Text>
       </Button>
-      {rid !== '0' &&
-        (
-          <Button onPress={() => remove()}>
-            <Text>삭제</Text>
-          </Button>
-        )
-      }
+      {rid !== '0' && (
+        <Button onPress={() => remove()}>
+          <Text>삭제</Text>
+        </Button>
+      )}
       <Button onPress={() => save()}>
         <Text>저장</Text>
       </Button>

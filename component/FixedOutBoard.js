@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { setComma } from '../component/Util';
+import {setComma} from '../component/Util';
 
 const Board = styled.View`
   padding: 10px;
@@ -46,13 +46,18 @@ const Unit = styled.Text`
   font-size: 17px;
 `;
 export default function FixedOutBoard(props) {
-  const { total, onChangeTotal, lastTotal } = props;
+  const {total, onChangeTotal, lastTotal} = props;
 
   return (
     <Board>
       <Group>
         <Desc>월 수입</Desc>
-        <Input value={total} onChangeText={onChangeTotal} placeholder="금액" keyboardType="numeric" />
+        <Input
+          value={total}
+          onChangeText={onChangeTotal}
+          placeholder="금액"
+          keyboardType="numeric"
+        />
         <Unit>원</Unit>
       </Group>
       <Group>

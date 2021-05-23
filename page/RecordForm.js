@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components/native';
-import { Alert, StatusBar } from 'react-native';
+import {Alert, StatusBar} from 'react-native';
 
-import { BackButton } from "react-router-native";
+import {BackButton} from 'react-router-native';
 import Realm from 'realm';
 
 import FormFooter from '../component/FormFooter';
@@ -44,18 +44,18 @@ export default class ReocrdForm extends Component {
     super(props);
 
     const realm = new Realm();
-    const { rid } = this.props.match.params;
+    const {rid} = this.props.match.params;
     const outRecord = realm.objects('OutRecord').filtered(`id = ${rid}`)[0];
     if (outRecord) {
-      this.state = { title: outRecord.title, out: String(outRecord.out) };
+      this.state = {title: outRecord.title, out: String(outRecord.out)};
     } else {
-      this.state = { title: '', out: '' };
+      this.state = {title: '', out: ''};
     }
   }
 
   render() {
-    const { title, out } = this.state;
-    const { history, match } = this.props;
+    const {title, out} = this.state;
+    const {history, match} = this.props;
 
     return (
       <Page>
@@ -69,26 +69,34 @@ export default class ReocrdForm extends Component {
           <Label>
             <Text>얼마나 썼나요?</Text>
           </Label>
-          <Input value={out} onChangeText={this.onChangeOut} keyboardType="numeric" />
+          <Input
+            value={out}
+            onChangeText={this.onChangeOut}
+            keyboardType="numeric"
+          />
         </Top>
-        <FormFooter back={history.goBack} rid={match.params.rid}
-                    remove={this.remove} save={this.save} />
+        <FormFooter
+          back={history.goBack}
+          rid={match.params.rid}
+          remove={this.remove}
+          save={this.save}
+        />
       </Page>
     );
   }
 
-  onChangeTitle = (title) => {
-    this.setState({ title });
-  }
+  onChangeTitle = title => {
+    this.setState({title});
+  };
 
-  onChangeOut = (out) => {
+  onChangeOut = out => {
     out = out.replace(/[^0-9]/g, '');
-    this.setState({ out });
-  }
+    this.setState({out});
+  };
 
   remove = () => {
-    const { out } = this.state;
-    const { id, rid } = this.props.match.params;
+    const {out} = this.state;
+    const {id, rid} = this.props.match.params;
 
     Alert.alert(
       '확인',
@@ -104,57 +112,60 @@ export default class ReocrdForm extends Component {
             const realm = new Realm();
             realm.write(() => {
               let today = realm.objects('Today').filtered(`id = ${id}`)[0];
-              let record = realm.objects('OutRecord').filtered(`id = ${rid}`)[0];
+              let record = realm
+                .objects('OutRecord')
+                .filtered(`id = ${rid}`)[0];
 
-              today.out -= parseInt(out);
-              today.balance += parseInt(out);
+              today.out -= parseInt(out, 10);
+              today.balance += parseInt(out, 10);
               realm.delete(record);
 
               this.props.history.goBack();
             });
-          }
+          },
         },
       ],
       {cancelable: true},
     );
-  }
+  };
 
   save = () => {
-    const { title, out } = this.state;
+    const {title, out} = this.state;
 
     if (!title) {
-      Alert.alert('알림', '지출내역을 입력해주세요.', [{ text: '확인' }]);
+      Alert.alert('알림', '지출내역을 입력해주세요.', [{text: '확인'}]);
       return;
     }
 
     if (!out) {
-      Alert.alert('알림', '지출금액을 입력해주세요.', [{ text: '확인' }]);
+      Alert.alert('알림', '지출금액을 입력해주세요.', [{text: '확인'}]);
       return;
     }
 
-    const { id, rid } = this.props.match.params;
+    const {id, rid} = this.props.match.params;
     const realm = new Realm();
     realm.write(() => {
       let today = realm.objects('Today').filtered(`id = ${id}`)[0];
-      if (parseInt(rid) !== 0) {
+      if (parseInt(rid, 10) !== 0) {
         let record = realm.objects('OutRecord').filtered(`id = ${rid}`)[0];
         record.title = title;
-        record.out = parseInt(out);
+        record.out = parseInt(out, 10);
       } else {
         today.records.push({
           id: new Date().getTime(),
-          todayId: parseInt(id),
+          todayId: parseInt(id, 10),
           title,
-          out: parseInt(out)
+          out: parseInt(out, 10),
         });
       }
 
-      const fixedInRecord = realm.objects('FixedIn')[0];
-      today.out = realm.objects('OutRecord').filtered(`todayId = ${id}`).sum('out');
-      //today.balance = fixedInRecord.limit - today.out;
-      today.balance -= parseInt(out);
+      today.out = realm
+        .objects('OutRecord')
+        .filtered(`todayId = ${id}`)
+        .sum('out');
+      today.balance -= parseInt(out, 10);
 
       this.props.history.goBack();
     });
-  }
-};
+  };
+}

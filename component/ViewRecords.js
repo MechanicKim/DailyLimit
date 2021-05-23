@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { setComma } from '../component/Util';
+import {setComma} from '../component/Util';
 
 const Scroll = styled.ScrollView`
   flex: 1;
@@ -27,16 +27,19 @@ const Price = styled.Text`
 `;
 
 export default function ViewRecords(props) {
-  const { day, update } = props;
+  const {day, update} = props;
 
   return (
     <Scroll>
-    {day.records.map((record, index) => (
-        <Wrap key={record.id} onPress={() => update(record.id)} activeOpacity={0.7}>
+      {day.records.map((record, index) => (
+        <Wrap
+          key={record.id}
+          onPress={() => update(record.id)}
+          activeOpacity={0.7}>
           <Desc>{record.title}</Desc>
           <Price>{setComma(record.out)}원</Price>
         </Wrap>
-    ))}
+      ))}
     </Scroll>
   );
 }

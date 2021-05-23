@@ -19,7 +19,7 @@ const Text = styled.Text`
 `;
 
 export default function ViewFooter(props) {
-  const { back, update } = props;
+  const {back, update} = props;
 
   return (
     <Footer>

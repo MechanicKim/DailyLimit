@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { setComma } from './Util';
+import {setComma} from './Util';
 
 const Wrap = styled.TouchableOpacity`
   padding-left: 20px;
@@ -29,29 +29,23 @@ const Text = styled.Text`
 `;
 
 export default function MainTop(props) {
-  const { today, fixedLimit, total, goToPage } = props;
+  const {today, fixedLimit, total, goToPage} = props;
   const balance = fixedLimit - (today.out || 0);
 
   return (
-    <Wrap onPress={() => goToPage(`fixedOut`)} activeOpacity={0.9}>
+    <Wrap onPress={() => goToPage('fixedOut')} activeOpacity={0.9}>
       <Label>
-        <Text size={35}>
-          일한도 {setComma(fixedLimit)}원
-        </Text>
+        <Text size={35}>일한도 {setComma(fixedLimit)}원</Text>
       </Label>
       <Label>
         <Text>지출 {setComma(today.out || 0)}원</Text>
       </Label>
-      <Line></Line>
+      <Line />
       <Label>
-        <Text>
-          남은금액 {setComma(balance)}원
-        </Text>
+        <Text>남은금액 {setComma(balance)}원</Text>
       </Label>
       <Label>
-        <Text size={20}>
-          이번 달 절약한 금액 {setComma(total)}원
-        </Text>
+        <Text size={20}>이번 달 절약한 금액 {setComma(total)}원</Text>
       </Label>
     </Wrap>
   );

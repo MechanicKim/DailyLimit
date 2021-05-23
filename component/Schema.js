@@ -3,8 +3,8 @@ export const FixedInSchema = {
   name: 'FixedIn',
   properties: {
     in: 'int',
-    limit: 'int'
-  }
+    limit: 'int',
+  },
 };
 
 /* 고정 지출 */
@@ -13,8 +13,8 @@ export const FixedOutSchema = {
   properties: {
     id: 'int',
     desc: 'string',
-    out: 'int'
-  }
+    out: 'int',
+  },
 };
 
 /* 지출 내역 2 */
@@ -24,8 +24,8 @@ export const OutRecordSchema = {
     id: 'int',
     todayId: 'int',
     title: 'string',
-    out: {type: 'int', default: 0}
-  }
+    out: {type: 'int', default: 0},
+  },
 };
 
 /* 지출 내역 1 */
@@ -35,8 +35,8 @@ export const TodaySchema = {
     id: 'int',
     out: {type: 'int', default: 0},
     balance: {type: 'int', default: 0},
-    records: 'OutRecord[]'
-  }
+    records: 'OutRecord[]',
+  },
 };
 
 export const SchemaVersion = 1;

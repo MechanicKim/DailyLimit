@@ -19,7 +19,7 @@ const Text = styled.Text`
 `;
 
 export default function FixedOutFooter(props) {
-  const { back, add, save } = props;
+  const {back, add, save} = props;
 
   return (
     <Footer>

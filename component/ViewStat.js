@@ -1,6 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components/native';
-import { setComma } from '../component/Util';
+import styled from 'styled-components/native';
+import {setComma} from '../component/Util';
 
 const Wrap = styled.View`
   padding-left: 20px;
@@ -25,23 +25,19 @@ const Text = styled.Text`
 `;
 
 export default function ViewStat(props) {
-  const { limit, day } = props;
+  const {limit, day} = props;
 
   return (
     <Wrap>
       <Label>
-        <Text size={35}>
-          한도 {setComma(limit)}원
-        </Text>
+        <Text size={35}>한도 {setComma(limit)}원</Text>
       </Label>
       <Label>
         <Text>지출 {setComma(day.out)}원</Text>
       </Label>
-      <Line></Line>
+      <Line />
       <Label>
-        <Text>
-          남은금액 {setComma(limit - day.out)}원
-        </Text>
+        <Text>남은금액 {setComma(limit - day.out)}원</Text>
       </Label>
     </Wrap>
   );

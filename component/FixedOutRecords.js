@@ -36,21 +36,24 @@ const Button = styled.TouchableOpacity`
 `;
 
 export default function FixedOutRecords(props) {
-  const { records, update, remove } = props;
+  const {records, update, remove} = props;
 
   return (
     <Scroll>
-    {records.map((record, index) => (
-      <Record key={index} onPress={() => update(record, index)} activeOpacity={0.7}>
-        <Group>
-          <Desc>{record.desc || '없음'}</Desc>
-          <Out>{record.out || 0}원</Out>
-        </Group>
-        <Button onPress={() => remove(index)} activeOpacity={0.7}>
-          <Icon name="times" size={17} color="#212121" solid />
-        </Button>
-      </Record>
-    ))}
+      {records.map((record, index) => (
+        <Record
+          key={index}
+          onPress={() => update(record, index)}
+          activeOpacity={0.7}>
+          <Group>
+            <Desc>{record.desc || '없음'}</Desc>
+            <Out>{record.out || 0}원</Out>
+          </Group>
+          <Button onPress={() => remove(index)} activeOpacity={0.7}>
+            <Icon name="times" size={17} color="#212121" solid />
+          </Button>
+        </Record>
+      ))}
     </Scroll>
   );
 }

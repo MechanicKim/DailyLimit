@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import styled, { css } from 'styled-components/native';
-import { StatusBar } from 'react-native';
-import { BackButton } from "react-router-native";
+import React, {Component} from 'react';
+import styled from 'styled-components/native';
+import {StatusBar} from 'react-native';
+import {BackButton} from 'react-router-native';
 import Realm from 'realm';
-import moment from "moment";
+import moment from 'moment';
 
 import ViewStat from '../component/ViewStat';
 import ViewRecords from '../component/ViewRecords';
@@ -31,11 +31,11 @@ export default class RecordView extends Component {
     const day = realm.objects('Today').filtered(`id = ${todayId}`)[0];
 
     this.date = moment(day.id, 'YYYYMMDD').format('YYYY년 M월 D일 ddd', 'ko');
-    this.state = { day, limit: fixedInRecord.limit };
+    this.state = {day, limit: fixedInRecord.limit};
   }
 
   render() {
-    const { day, limit } = this.state;
+    const {day, limit} = this.state;
 
     return (
       <Page>
@@ -51,5 +51,5 @@ export default class RecordView extends Component {
 
   goToForm = id => {
     this.props.history.push(`/record/${this.state.day.id}/${id || 0}`);
-  }
-};
+  };
+}

@@ -6,14 +6,14 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Main from './page/Main';
 import FixedOut from './page/FixedOutForm';
 import RecordView from './page/RecordView';
 import RecordForm from './page/RecordForm';
 
-import { NativeRouter, Route } from "react-router-native";
+import {NativeRouter, Route} from 'react-router-native';
 
 export default class App extends Component {
   render() {
@@ -27,4 +27,4 @@ export default class App extends Component {
       </NativeRouter>
     );
   }
-};
+}
