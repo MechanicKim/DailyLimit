@@ -112,12 +112,6 @@ export default class MainBottom extends Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.day.id !== prevProps.day.id) {
-      this.setState({detail: false});
-    }
-  }
-
   render() {
     const {detail} = this.state;
     const {day, fixedLimit, goToPage} = this.props;
@@ -127,9 +121,7 @@ export default class MainBottom extends Component {
     return (
       <Wrap>
         <Record>
-          <Toggle
-            onPress={e => this.setState({detail: !detail})}
-            activeOpacity={0.7}>
+          <Toggle onPress={e => this.toggle()} activeOpacity={0.7}>
             <Group1>
               <Date>{date1}</Date>
               <Date>{date2}요일</Date>
@@ -172,4 +164,14 @@ export default class MainBottom extends Component {
       </Wrap>
     );
   }
+
+  toggle = () => {
+    const {day} = this.props;
+    if (day.records.length === 0) {
+      return;
+    }
+
+    const {detail} = this.state;
+    this.setState({detail: !detail});
+  };
 }
