@@ -6,7 +6,6 @@ import MainTop from '../component/MainTop';
 import MainRecords from '../component/MainRecords';
 import MainFooter from '../component/MainFooter';
 
-import SplashScreen from 'react-native-splash-screen';
 import {BackButton} from 'react-router-native';
 import Realm from 'realm';
 import {
@@ -49,8 +48,6 @@ export default class Main extends Component {
   }
 
   componentDidMount() {
-    SplashScreen.hide();
-
     Realm.open({
       schema: [FixedInSchema, FixedOutSchema, TodaySchema, OutRecordSchema],
       schemaVersion: SchemaVersion,
