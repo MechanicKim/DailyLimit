@@ -51,7 +51,6 @@ export default class Main extends Component {
     Realm.open({
       schema: [FixedInSchema, FixedOutSchema, TodaySchema, OutRecordSchema],
       schemaVersion: SchemaVersion,
-      migration: (oldRealm, newRelam) => {},
     }).then(realm => {
       realm.write(() => {
         /* 고정 수입 불러오기 */
